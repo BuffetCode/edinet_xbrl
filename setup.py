@@ -71,6 +71,9 @@ setup(
     # above.
     author_email='buffett.code.info@gmail.com',  # Optional
 
+    # Pick your license as you wish
+    license='Apache License 2.0',
+
     # Classifiers help users find your project by categorizing it.
     #
     # For a list of valid classifiers, see
@@ -85,9 +88,6 @@ setup(
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
-
-        # Pick your license as you wish
-        'License :: OSI Approved :: Apache License 2.0',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
