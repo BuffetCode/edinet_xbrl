@@ -12,11 +12,9 @@
 
 
 import os
-import sys
-sys.path.append("{0}/../edinet_xbrl".format(os.path.dirname(os.path.abspath(__file__))))
 import unittest
 from nose.tools import eq_
-from edinet_xbrl_parser import EdinetXbrlParser
+from edinet_xbrl.edinet_xbrl_parser import EdinetXbrlParser
 import yaml
 import codecs
 

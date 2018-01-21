@@ -11,7 +11,7 @@
 #  limitations under the License. See accompanying LICENSE file.
 
 from collections import OrderedDict
-from rawdata_util import RawdataUtil
+from edinet_xbrl.rawdata_util import RawdataUtil
 
 
 class Rawdata(object):

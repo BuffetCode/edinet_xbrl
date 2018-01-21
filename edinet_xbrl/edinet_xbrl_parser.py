@@ -11,7 +11,7 @@
 #  limitations under the License. See accompanying LICENSE file.
 
 from xbrl import XBRLParser
-from rawdata import Rawdata, RawdataContainer
+from edinet_xbrl.rawdata import Rawdata, RawdataContainer
 import codecs
 
 class EdinetXbrlParser(object):
