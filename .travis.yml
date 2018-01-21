@@ -8,5 +8,5 @@ python:
   - "pypy"
 # command to install dependencies
 install:
-  - python setup.py -q install
+  - pip install pyyaml nose python-xbrl
 script: nosetests
