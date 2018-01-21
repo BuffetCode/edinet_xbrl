@@ -8,5 +8,5 @@ python:
   - "pypy"
 # command to install dependencies
 install:
-  - pip install .
+  - python setup.py -q install
 script: nosetests
