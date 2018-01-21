@@ -19,7 +19,7 @@ import yaml
 import codecs
 
 
-class EdinetReportParserTestCase(unittest.TestCase):
+class EdinetXbrlParserTestCase(unittest.TestCase):
   TEST_DIR = "{0}/test_data".format(os.path.dirname(os.path.abspath(__file__)))
   EMPLOYEES_NUM_KEY = "jpcrp_cor:NumberOfEmployees"
   ASSETS_NUM_KEY = "jppfs_cor:Assets"
@@ -35,7 +35,7 @@ class EdinetReportParserTestCase(unittest.TestCase):
     return parser.parse_file(xbrl_file_path)
 
   @classmethod
-  def get_tested_xbrl(cls, target):
+  def get_xbrl_file(cls, target):
     return "{0}/{1}.xbrl".format(cls.TEST_DIR, target)
 
   @classmethod
@@ -47,7 +47,7 @@ class EdinetReportParserTestCase(unittest.TestCase):
   @classmethod
   def test_kakaku(cls):
     target = "CJ_2371_kakakucom"
-    xbrl_file = cls.get_tested_xbrl(target)
+    xbrl_file = cls.get_xbrl_file(target)
     data_container = cls.parse(xbrl_file)
     expected_dict = cls.get_expected_dict(target)
     eq_(expected_dict["employees_num"], int(data_container.get_rawdata_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_CONTEXT).get_value()))
@@ -57,7 +57,7 @@ class EdinetReportParserTestCase(unittest.TestCase):
   @classmethod
   def test_yahoo(cls):
     target = "CI_4689_yahoo"
-    xbrl_file = cls.get_tested_xbrl(target)
+    xbrl_file = cls.get_xbrl_file(target)
     data_container = cls.parse(xbrl_file)
     expected_dict = cls.get_expected_dict(target)
     eq_(expected_dict["employees_num"], int(data_container.get_rawdata_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_NON_CON_CONTEXT).get_value()))
