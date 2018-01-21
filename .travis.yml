@@ -9,5 +9,4 @@ python:
 # command to install dependencies
 install:
   - pip install .
-  - pip install -r requirements.txt -r test-requirements.txt
 script: nosetests
