@@ -1,0 +1,1 @@
+# edinet_xbrl
