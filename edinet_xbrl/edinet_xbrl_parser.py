@@ -11,13 +11,13 @@
 #  limitations under the License. See accompanying LICENSE file.
 
 from xbrl import XBRLParser
-from edinet_xbrl.rawdata import Rawdata, RawdataContainer
+from edinet_xbrl.edinet_xbrl_object import EdinetData, EdinetXbrlObject
 import codecs
 
 class EdinetXbrlParser(object):
   @classmethod
   def parse_file(cls, xbrl_file_path):
-    data_container = RawdataContainer()
+    data_container = EdinetXbrlObject()
     with codecs.open(xbrl_file_path, 'r', 'utf-8') as of:
       parser = XBRLParser.parse(of)
       for node in parser.find_all():
@@ -26,5 +26,5 @@ class EdinetXbrlParser(object):
 
   @staticmethod
   def put_node(data_container, node):
-    data_container.put_rawdata(node.name, Rawdata.create(node))
+    data_container.put_rawdata(node.name, EdinetData.create(node))
 

@@ -11,7 +11,7 @@
 #  limitations under the License. See accompanying LICENSE file.
 
 
-class RawdataUtil(object):
+class EdinetDataUtil(object):
   CONTEXT_REF = "contextref"
   UNIT_REF = "unitref"
   DECIMALS = "decimals" 

@@ -11,10 +11,10 @@
 #  limitations under the License. See accompanying LICENSE file.
 
 from collections import OrderedDict
-from edinet_xbrl.rawdata_util import RawdataUtil
+from edinet_xbrl.edinet_data_util import EdinetDataUtil
 
 
-class Rawdata(object):
+class EdinetData(object):
   def __init__(self, key, value, decimals=0, unit_ref="", context_ref=""):
     self.key = key
     self.value = value
@@ -39,14 +39,15 @@ class Rawdata(object):
 
   @staticmethod
   def create(node):
-    key = RawdataUtil.get_key(node)
-    value = RawdataUtil.get_value(node)
-    decimals = RawdataUtil.get_decimals(node)
-    unit_ref = RawdataUtil.get_unit_ref(node)
-    context_ref = RawdataUtil.get_context_ref(node)
-    return Rawdata(key, value, decimals, unit_ref, context_ref)
+    key = EdinetDataUtil.get_key(node)
+    value = EdinetDataUtil.get_value(node)
+    decimals = EdinetDataUtil.get_decimals(node)
+    unit_ref = EdinetDataUtil.get_unit_ref(node)
+    context_ref = EdinetDataUtil.get_context_ref(node)
+    return EdinetData(key, value, decimals, unit_ref, context_ref)
 
-class RawdataContainer(object):
+
+class EdinetXbrlObject(object):
   def __init__(self):
     self._data_dict = OrderedDict()
 
