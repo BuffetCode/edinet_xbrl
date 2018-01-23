@@ -29,6 +29,7 @@ How to Use
 To get value from your xbrl files, easily:
 
 .. code-block:: python
+
   from edinet_xbrl.edinet_xbrl_parser import EdinetXbrlParser
 
   ## init parser
