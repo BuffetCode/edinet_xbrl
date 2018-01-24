@@ -54,22 +54,20 @@ class EdinetXbrlObject(object):
   def clear(self):
     self._data_dict.clear()
 
-  def put_rawdata(self, key, rawdata):
+  def put(self, key, edinet_data):
     if self.has_key(key):
-      self._data_dict[key].append(rawdata)
+      self._data_dict[key].append(edinet_data)
     else:
-      self._data_dict[key] = [rawdata]
+      self._data_dict[key] = [edinet_data]
 
-  def get_rawdata_list(self, key, auto_lower=True):
+  def get_data_list(self, key, auto_lower=True):
     if auto_lower:
       key = key.lower()
-    try:
-      return self._data_dict[key]
-    except KeyError:
-      return []
 
-  def get_rawdata_by_context_ref(self, key, context_ref):
-    val = list(filter(lambda d: d.get_context_ref() == context_ref, self.get_rawdata_list(key)))
+    return self._data_dict.get(key, [])
+
+  def get_data_by_context_ref(self, key, context_ref):
+    val = list(filter(lambda d: d.get_context_ref() == context_ref, self.get_data_list(key)))
     if val:
       return val[0]
     else:

@@ -26,5 +26,5 @@ class EdinetXbrlParser(object):
 
   @staticmethod
   def put_node(data_container, node):
-    data_container.put_rawdata(node.name, EdinetData.create(node))
+    data_container.put(node.name, EdinetData.create(node))
 

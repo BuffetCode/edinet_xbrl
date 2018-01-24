@@ -42,6 +42,6 @@ To get value from your xbrl files, easily:
   ## get value from container
   key = "jppfs_cor:Assets"
   context_ref = "CurrentYearInstant"
-  current_year_assets = edinet_xbrl_object.get_rawdata_by_context_ref(key, context_ref).get_value()
+  current_year_assets = edinet_xbrl_object.get_data_by_context_ref(key, context_ref).get_value()
 
 ..

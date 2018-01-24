@@ -50,9 +50,9 @@ class EdinetXbrlParserTestCase(unittest.TestCase):
     xbrl_file = cls.get_xbrl_file(target)
     data_container = cls.parse(xbrl_file)
     expected_dict = cls.get_expected_dict(target)
-    eq_(expected_dict["employees_num"], int(data_container.get_rawdata_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_CONTEXT).get_value()))
-    eq_(expected_dict["assets"], int(data_container.get_rawdata_by_context_ref(cls.ASSETS_NUM_KEY, cls.CURRENT_YEAR_INSTANT_CONTEXT).get_value()))
-    eq_(expected_dict["netsales"], int(data_container.get_rawdata_by_context_ref(cls.NETSALES_KEY, cls.CURRENT_YEAR_DURATION_CONTEXT).get_value()))
+    eq_(expected_dict["employees_num"], int(data_container.get_data_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_CONTEXT).get_value()))
+    eq_(expected_dict["assets"], int(data_container.get_data_by_context_ref(cls.ASSETS_NUM_KEY, cls.CURRENT_YEAR_INSTANT_CONTEXT).get_value()))
+    eq_(expected_dict["netsales"], int(data_container.get_data_by_context_ref(cls.NETSALES_KEY, cls.CURRENT_YEAR_DURATION_CONTEXT).get_value()))
 
   @classmethod
   def test_yahoo(cls):
@@ -60,9 +60,9 @@ class EdinetXbrlParserTestCase(unittest.TestCase):
     xbrl_file = cls.get_xbrl_file(target)
     data_container = cls.parse(xbrl_file)
     expected_dict = cls.get_expected_dict(target)
-    eq_(expected_dict["employees_num"], int(data_container.get_rawdata_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_NON_CON_CONTEXT).get_value()))
-    eq_(expected_dict["assets"], int(data_container.get_rawdata_by_context_ref(cls.ASSETS_NUM_KEY, cls.CURRENT_YEAR_INSTANT_NON_CON_CONTEXT).get_value()))
-    eq_(expected_dict["netsales"], int(data_container.get_rawdata_by_context_ref(cls.NETSALES_KEY, cls.CURRENT_YEAR_DURATION_NON_CON_CONTEXT).get_value()))
+    eq_(expected_dict["employees_num"], int(data_container.get_data_by_context_ref(cls.EMPLOYEES_NUM_KEY, cls.CURRENT_YEAR_INSTANT_NON_CON_CONTEXT).get_value()))
+    eq_(expected_dict["assets"], int(data_container.get_data_by_context_ref(cls.ASSETS_NUM_KEY, cls.CURRENT_YEAR_INSTANT_NON_CON_CONTEXT).get_value()))
+    eq_(expected_dict["netsales"], int(data_container.get_data_by_context_ref(cls.NETSALES_KEY, cls.CURRENT_YEAR_DURATION_NON_CON_CONTEXT).get_value()))
 
 
 if __name__ == '__main__':
