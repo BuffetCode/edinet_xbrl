@@ -24,6 +24,6 @@ class EdinetXbrlDownloader(object):
   @classmethod
   def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0):
     response = UfoCatcherUtil.request(ticker)
-    for url in UfoCatcherUtil.generate_xbrl_url(response.text):
+    for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
       cls.download(url, target_dir)
       sleep(wait_sec)

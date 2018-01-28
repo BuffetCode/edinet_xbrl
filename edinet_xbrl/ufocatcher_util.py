@@ -28,7 +28,7 @@ class UfoCatcherUtil(object):
     return requests.get(url=cls.create_url(tikcer), headers=headers)
 
   @classmethod
-  def is_xbrl_url(cls, element):
+  def is_edinet_xbrl_url(cls, element):
     url = cls.get_href_attrib(element)
     return False if url is None else ("PublicDoc" in url and url.endswith(".xbrl"))
 
@@ -39,13 +39,13 @@ class UfoCatcherUtil(object):
     return et_tree
 
   @classmethod
-  def generate_xbrl_url(cls, html):
+  def generate_edinet_xbrl_url(cls, html):
     et_tree = cls.get_et_tree(html)
     for el in et_tree.findall('.//' + cls.NAMESPACE + 'entry'):
       for link in el.findall('./' + cls.NAMESPACE +'link[@type="text/xml"]'):
-        if cls.is_xbrl_url(link):
+        if cls.is_edinet_xbrl_url(link):
           yield cls.get_href_attrib(link)
 
   @staticmethod
   def get_href_attrib(element):
-    return element.attrib['href']
+    return element.attrib.get('href', None)
