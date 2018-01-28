@@ -26,7 +26,26 @@ To install edinet_xbrl, simply:
 How To Use
 ===============
 .. HowToUse
-To get value from your xbrl files, easily:
+   ------------
+
+
+To download xbrl files from EDINET:
+
+.. code-block:: python
+
+  from edinet_xbrl.edinet_xbrl_downloader import EdinetXbrlDownloader
+
+  ## init downloader
+  xbrl_downloader = EdinetXbrlDownloader()
+
+  ## set a ticker you want to download xbrl file
+  ticker = "1234"
+  target_dir = "a target directory path"
+  xbrl_downloader.download_by_ticker(ticker, target_dir)
+
+..
+
+To get value from your xbrl files:
 
 .. code-block:: python
 
