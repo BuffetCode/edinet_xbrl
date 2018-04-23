@@ -18,7 +18,7 @@ To install edinet_xbrl, simply:
 
 .. code-block:: bash
 
-  $ pip install edinet_xbrl
+  $ pip install edinet-xbrl
 
 .. 
 
