@@ -68,8 +68,8 @@ To get value from your xbrl files:
 Development and Bug Reports
 ===============
 
-We use github issues to manage bugs.
-If you found some bugs, please report from here_.
-Of course, any pull requests are welcome.
+| We use github issues to manage bugs.
+| If you found some bugs, please report from here_.
+| Of course, any pull requests are welcome.
 
 .. _here: https://github.com/BuffetCode/edinet_xbrl/issues/new
