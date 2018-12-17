@@ -17,22 +17,21 @@ import urllib.request
 
 
 class EdinetXbrlDownloader(object):
-    @staticmethod
-    def download(url, target_dir):
+    @classmethod
+    def download(cls, url, target_dir, is_override):
         file_name = "{0}/{1}".format(target_dir, url.split("/")[-1])
-        if not os.path.exists(file_name):
-            urllib.request.urlretrieve(url, file_name)
-            return True
-        return False
+        if os.path.exists(file_name) and not is_override:
+            file_name = cls.__get_next_file_name(file_name)
+        urllib.request.urlretrieve(url, file_name)
 
     @classmethod
-    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0, type_of_document=""):
+    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0, type_of_document="", is_override=True):
         response = UfoCatcherUtil.request(ticker)
         for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
             if not cls.__is_type_of_document(url, type_of_document):
                 continue
-            if cls.download(url, target_dir):
-                sleep(wait_sec)
+            cls.download(url, target_dir, is_override)
+            sleep(wait_sec)
 
     @staticmethod
     def __is_type_of_document(url, type_of_document):
@@ -43,3 +42,16 @@ class EdinetXbrlDownloader(object):
         if type_of_document == "":
             return True
         return type_of_document in url.split('-')
+
+    @staticmethod
+    def __get_next_file_name(fn):
+        """
+        Add number for identify
+        ex: '~(1)', '~(2)', ...
+        """
+        name, expanded = (lambda sfn: ("".join(sfn[:-1]), sfn[-1]))(fn.split('.'))
+        c = 1
+        while os.path.exists(name+"({})".format(c)+expanded):
+            c += 1
+        return name + "({})".format(c) + expanded
+
