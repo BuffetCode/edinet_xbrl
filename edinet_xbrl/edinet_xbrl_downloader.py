@@ -18,19 +18,23 @@ import urllib.request
 
 class EdinetXbrlDownloader(object):
     @classmethod
-    def download(cls, url, target_dir, is_override):
+    def download(cls, url, target_dir, is_override, is_numbering):
         file_name = "{0}/{1}".format(target_dir, url.split("/")[-1])
-        if os.path.exists(file_name) and not is_override:
-            file_name = cls.__get_next_file_name(file_name)
+        if os.path.exists(file_name):
+            if not is_override:
+                return
+            if is_numbering:
+                file_name = cls.__get_next_file_name(file_name)
         urllib.request.urlretrieve(url, file_name)
 
     @classmethod
-    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0, type_of_document="", is_override=True):
+    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0, type_of_document="",
+                           is_override=True, is_numbering=False):
         response = UfoCatcherUtil.request(ticker)
         for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
             if not cls.__is_type_of_document(url, type_of_document):
                 continue
-            cls.download(url, target_dir, is_override)
+            cls.download(url, target_dir, is_override, is_numbering)
             sleep(wait_sec)
 
     @staticmethod
