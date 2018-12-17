@@ -26,8 +26,20 @@ class EdinetXbrlDownloader(object):
         return False
 
     @classmethod
-    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0):
+    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0, type_of_document=""):
         response = UfoCatcherUtil.request(ticker)
         for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
+            if not cls.__is_type_of_document(url, type_of_document):
+                continue
             if cls.download(url, target_dir):
                 sleep(wait_sec)
+
+    @staticmethod
+    def __is_type_of_document(url, type_of_document):
+        """
+        Specify the Type of document of url
+        If you don't want to specify the type of document -> type_of_document = ""
+        """
+        if type_of_document == "":
+            return True
+        return type_of_document in url.split('-')
