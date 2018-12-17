@@ -17,17 +17,17 @@ import urllib.request
 
 
 class EdinetXbrlDownloader(object):
-  @staticmethod
-  def download(url, target_dir):
-    file_name = "{0}/{1}".format(target_dir, url.split("/")[-1])
-    if not os.path.exists(file_name):
-        urllib.request.urlretrieve(url, file_name)
-        return True
-    return False
+    @staticmethod
+    def download(url, target_dir):
+        file_name = "{0}/{1}".format(target_dir, url.split("/")[-1])
+        if not os.path.exists(file_name):
+            urllib.request.urlretrieve(url, file_name)
+            return True
+        return False
 
-  @classmethod
-  def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0):
-    response = UfoCatcherUtil.request(ticker)
-    for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
-        if cls.download(url, target_dir):
-              sleep(wait_sec)
+    @classmethod
+    def download_by_ticker(cls, ticker, target_dir, wait_sec=1.0):
+        response = UfoCatcherUtil.request(ticker)
+        for url in UfoCatcherUtil.generate_edinet_xbrl_url(response.text):
+            if cls.download(url, target_dir):
+                sleep(wait_sec)

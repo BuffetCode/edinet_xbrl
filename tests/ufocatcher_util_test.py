@@ -12,35 +12,36 @@
 
 
 import unittest
-from  xml.etree.ElementTree import Element
+from xml.etree.ElementTree import Element
 from nose.tools import eq_, assert_true, assert_false
 from edinet_xbrl.ufocatcher_util import UfoCatcherUtil
 
 
 class UfoCatcherUtilTest(unittest.TestCase):
-  @staticmethod
-  def test_create_url():
-    query = 'aaa'
-    eq_('http://resource.ufocatch.com/atom/edinetx/query/' + query, UfoCatcherUtil.create_url(query))
+    @staticmethod
+    def test_create_url():
+        query = 'aaa'
+        eq_('http://resource.ufocatch.com/atom/edinetx/query/' + query, UfoCatcherUtil.create_url(query))
 
-  @staticmethod
-  def test_is_edinet_xbrl_url():
-    # true
-    ok_element = Element("", {"href": "http://aaa.bbb/PublicDoc/ccc.xbrl"})
-    assert_true(UfoCatcherUtil.is_edinet_xbrl_url(ok_element))
+    @staticmethod
+    def test_is_edinet_xbrl_url():
+        # true
+        ok_element = Element("", {"href": "http://aaa.bbb/PublicDoc/ccc.xbrl"})
+        assert_true(UfoCatcherUtil.is_edinet_xbrl_url(ok_element))
 
-    # false
-    for ng_element in [Element("", {"href": "http://aaa.bbb/ccc.xbrl"}), Element("", {"href": "http://aaa.bbb/PublicDoc/ccc.html"})]:
-      assert_false(UfoCatcherUtil.is_edinet_xbrl_url(ng_element))
+        # false
+        for ng_element in [Element("", {"href": "http://aaa.bbb/ccc.xbrl"}),
+                           Element("", {"href": "http://aaa.bbb/PublicDoc/ccc.html"})]:
+            assert_false(UfoCatcherUtil.is_edinet_xbrl_url(ng_element))
 
-  @staticmethod
-  def test_get_href_attrib():
-    href = "http://aaa.bbb/PublicDoc/ccc.xbrl"
-    element = Element("", {"href": href})
-    eq_(href, UfoCatcherUtil.get_href_attrib(element))
-    # if href attrib is unset
-    eq_(None, UfoCatcherUtil.get_href_attrib(Element("")))
+    @staticmethod
+    def test_get_href_attrib():
+        href = "http://aaa.bbb/PublicDoc/ccc.xbrl"
+        element = Element("", {"href": href})
+        eq_(href, UfoCatcherUtil.get_href_attrib(element))
+        # if href attrib is unset
+        eq_(None, UfoCatcherUtil.get_href_attrib(Element("")))
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()
