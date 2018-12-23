@@ -12,53 +12,53 @@
 
 
 class EdinetDataUtil(object):
-  CONTEXT_REF = "contextref"
-  UNIT_REF = "unitref"
-  DECIMALS = "decimals" 
-  FORMAT = "format"
-  NAME = "name"
-  SCALE = "scale"
+    CONTEXT_REF = "contextref"
+    UNIT_REF = "unitref"
+    DECIMALS = "decimals"
+    FORMAT = "format"
+    NAME = "name"
+    SCALE = "scale"
 
-  @staticmethod
-  def get_key(node):
-    return node.name
+    @staticmethod
+    def get_key(node):
+        return node.name
 
-  @staticmethod
-  def get_value(node):
-    return node.string
+    @staticmethod
+    def get_value(node):
+        return node.string
 
-  @staticmethod
-  def offset(num, power):
-    return num * pow(10, power)
+    @staticmethod
+    def offset(num, power):
+        return num * pow(10, power)
 
-  @staticmethod
-  def _get_ref_str_value(node, key):
-    return node.attrs.get(key, "")
+    @staticmethod
+    def _get_ref_str_value(node, key):
+        return node.attrs.get(key, "")
 
-  @staticmethod
-  def _get_ref_int_value(node, key):
-    return int(node.attrs.get(key, 0))
+    @staticmethod
+    def _get_ref_int_value(node, key):
+        return int(node.attrs.get(key, 0))
 
-  @classmethod
-  def get_context_ref(cls, node):
-    return cls._get_ref_str_value(node, cls.CONTEXT_REF)
+    @classmethod
+    def get_context_ref(cls, node):
+        return cls._get_ref_str_value(node, cls.CONTEXT_REF)
 
-  @classmethod
-  def get_unit_ref(cls, node):
-    return cls._get_ref_str_value(node, cls.UNIT_REF)
+    @classmethod
+    def get_unit_ref(cls, node):
+        return cls._get_ref_str_value(node, cls.UNIT_REF)
 
-  @classmethod
-  def get_decimals(cls, node):
-    return cls._get_ref_int_value(node, cls.DECIMALS)
+    @classmethod
+    def get_decimals(cls, node):
+        return cls._get_ref_int_value(node, cls.DECIMALS)
 
-  @classmethod
-  def get_format(cls, node):
-    return cls._get_ref_str_value(node, cls.FORMAT)
+    @classmethod
+    def get_format(cls, node):
+        return cls._get_ref_str_value(node, cls.FORMAT)
 
-  @classmethod
-  def get_name(cls, node):
-    return cls._get_ref_str_value(node, cls.NAME)
+    @classmethod
+    def get_name(cls, node):
+        return cls._get_ref_str_value(node, cls.NAME)
 
-  @classmethod
-  def get_scale(cls, node):
-    return cls._get_ref_int_value(node, cls.SCALE)
+    @classmethod
+    def get_scale(cls, node):
+        return cls._get_ref_int_value(node, cls.SCALE)
