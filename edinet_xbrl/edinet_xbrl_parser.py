@@ -18,13 +18,13 @@ import codecs
 class EdinetXbrlParser(object):
     @classmethod
     def parse_file(cls, xbrl_file_path):
-        data_container = EdinetXbrlObject()
+        xbrl_object = EdinetXbrlObject()
         with codecs.open(xbrl_file_path, 'r', 'utf-8') as of:
             parser = XBRLParser.parse(of)
             for node in parser.find_all():
-                cls.put_node(data_container, node)
-        return data_container
+                cls.put_node(xbrl_object, node)
+        return xbrl_object
 
     @staticmethod
-    def put_node(data_container, node):
-        data_container.put(node.name, EdinetData.create(node))
+    def put_node(xbrl_object, node):
+        xbrl_object.put(node.name, EdinetData.create(node))
