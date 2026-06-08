@@ -53,9 +53,8 @@ class EdinetXbrlDownloader(object):
         Add number for identify
         ex: '~(1)', '~(2)', ...
         """
-        name, expanded = (lambda sfn: ("".join(sfn[:-1]), sfn[-1]))(fn.split('.'))
+        name, expanded = os.path.splitext(fn)
         c = 1
         while os.path.exists(name+"({})".format(c)+expanded):
             c += 1
         return name + "({})".format(c) + expanded
-
